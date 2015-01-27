@@ -25,6 +25,14 @@ app.get( '/students', function ( req, res ) {
 	} )
 } );
 
+app.get( '/student/:id', function ( req, res ) {
+	var thisStudent = students[req.params.id]
+	res.render( 'show.ejs', {
+		thisStudent: thisStudent
+	} )
+} );
+
+
 app.listen( 3000 );
 
 console.log( "Server listening on port: 3000" );

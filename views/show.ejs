@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>hogwashery!</title>
+    </head>
+    <body>
+        <header>
+            <h1>hogwashery!</h1>
+            <a href="/students">the great hall</a>
+        </header>
+        <p><%= thisStudent.name  %> is <%= thisStudent.age %> years old. Their favorite spell is <%= thisStudent.favorite_spell %>. </p>
+        <h3>Update <%= thisStudent.name %>'s info here:</h3>
+        <form action="/student/<%= thisStudent.id %>" method="post">
+            <input type="hidden" name="_method" value="put" required>
+            <input type="text" name = "newname" placeholder="student name">
+            <input type="text" name = "newage" placeholder="student age">
+            <input type="text" name = "newfavespell" placeholder="favorite spell">
+            <button>Drink the polyjuice!!!</button>
+        </form>
+        <h3>De-register <%= thisStudent.name  %> here:</h3>
+        <form action="/student/<%= thisStudent.id %>" method="post">
+            <input type="hidden" name="_method" value="delete" required>
+            <button>DISAPPARATE!!!</button>
+        </form>
+    </body>
+</html>
