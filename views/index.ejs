@@ -13,12 +13,8 @@
 			This student has an id of <a href="/student/<%= students[student].id %>">
 			<%= students[student].id %></a>.
 			<% if (students[student].house === ""){%>
-				<form action="sort/<%= student %>">
-				<button>Sort</button>
-				</form>
-			<% } else if (students[student].house === "<%= students[student].house %>") { %>
-			They belong to house <%= students[student].house %>.
-			<%	} %>
+				<form action="/sort/<%= student %>" method="post" ><button>Sort</button></form>
+			<% } %>
 		</li>
 		<%	} %>
 		

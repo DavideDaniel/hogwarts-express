@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= house %></title>
+</head>
+<body>
+	<h1> House <%= house %> </h1>
+	<h4>Students</h4>
+	<ul>
+		<%for(counter in students){ 
+			if(students[counter].house === house){ %>
+
+			<li> <a href="/student/<%= counter %>"> <%=students[counter].name %> </a>
+			</li>
+			<% } %>
+		<% } %>
+	</ul>
+</body>
+</html>
