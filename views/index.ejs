@@ -6,20 +6,32 @@
 </head>
 <body>
 	<ul>
-		<% for( var value in students){ %>
+		<% for( var student in students){ %>
 
-		<li><%= students[value].name  %> is <%= students[value].age %> years old.
-			This student has an id of <a href="/student/<%= students[value].id %>">
-			<%= students[value].id %></a>.
-		<%	} %>
+		<li><%= students[student].name  %> is <%= students[student].age %> years old.
+			This student has an id of <a href="/student/<%= students[student].id %>">
+			<%= students[student].id %></a>.
 		</li>
+		<%	} %>
+		
+	</ul>
+
+	<ul>
+		<% for( student in students){ %>
+		<li> 
+			<%=student %>: <a href="/student/<%=student%>"><%=students[student].name%></a>, Age: <%= students[student].age%> . House: <%= students[student].house%>
+			<% if (students[student].house === ""){%>
+				<form method="post" action="/sort/<%=student%>"><button>Sort</button></form>
+			<% } %>
+		</li>
+		<% } %>
 	</ul>
 
 	<h3>Enroll here!</h3>
 	<form action="/student" method="post">
 		<input type="text" name="name" placeholder="name" required>
 		<input type="text" name="age" placeholder="age" required>
-		<input type="text" name="fave_spell" placeholder="favorite spell" required>
+		<input type="text" name="faveSpell" placeholder="favorite spell" required>
 		<button>ERECTO!</button>
 	</form>
 </body>
