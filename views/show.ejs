@@ -11,11 +11,10 @@
         </header>
         <p><%= thisStudent.name  %> is <%= thisStudent.age %> years old. Their favorite spell is <%= thisStudent.favorite_spell %>. </p>
         <h3>Update <%= thisStudent.name %>'s info here:</h3>
-        <form action="/student/<%= thisStudent.id %>?_method=post" method="post">
+        <form action="/student/<%= thisStudent.id %>?_method=put" method="post">
             <input type="hidden" name="_method" value="put" required>
-            <input type="text" name = "newName" placeholder="student name">
-            <input type="text" name = "newAge" placeholder="student age">
-            <input type="text" name = "newFaveSpell" placeholder="favorite spell">
+            <input type="text" name = "newName" placeholder="Change name here">
+            <input type="text" name = "newFaveSpell" placeholder="Change favorite spell here">
             <button>Drink the polyjuice!!!</button>
         </form>
         <h3>De-register <%= thisStudent.name  %> here:</h3>

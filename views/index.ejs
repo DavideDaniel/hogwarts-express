@@ -16,17 +16,6 @@
 		
 	</ul>
 
-	<ul>
-		<% for( student in students){ %>
-		<li> 
-			<%=student %>: <a href="/student/<%=student%>"><%=students[student].name%></a>, Age: <%= students[student].age%> . House: <%= students[student].house%>
-			<% if (students[student].house === ""){%>
-				<form method="post" action="/sort/<%=student%>"><button>Sort</button></form>
-			<% } %>
-		</li>
-		<% } %>
-	</ul>
-
 	<h3>Enroll here!</h3>
 	<form action="/student" method="post">
 		<input type="text" name="name" placeholder="name" required>

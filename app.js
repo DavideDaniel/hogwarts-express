@@ -1,11 +1,10 @@
 var express = require( 'express' );
 var bodyParser = require( 'body-parser' );
-
 var methodOverride = require( 'method-override' )
 var app = express();
 
 app.use(bodyParser());
-app.use( methodOverride( '_method' ) );
+app.use( methodOverride( '_method' ) )
 app.use( express.static( __dirname + '/public' ) );
 
 var students = {
@@ -43,13 +42,13 @@ app.post( '/student', function ( req, res ) {
 	students[counter] = student;
 	counter++
 	console.log(students.counter);
+	res.method = 'get';
 	res.redirect( '/students' );
 } );
 
 app.put( '/student/:id', function ( req, res ) {
-	console.log( students[ req.params.id ].name );
+
 	students[ req.params.id ].name = req.body.newName;
-	students[ req.params.id ].age = req.body.newAge;
 	students[ req.params.id ].favorite_spell = req.body.newFaveSpell;
 	req.method = 'get';
 	res.redirect( '/student/' + req.params.id )
