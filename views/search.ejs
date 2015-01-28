@@ -5,37 +5,58 @@
 	<title>hogwashery!</title>
 </head>
 <body>
-<input type="text" placeholder="Name of student" name="searchName">
+<input type="text" placeholder="Name of student" name = "queryName">
 <button>Search</button>
 
 </body>
 
 <script type="text/javascript">
-	var button = document.querySelector("button")
-
-
+var button = document.querySelector("button");
 button.addEventListener("click", function (){
-
-
+	var input = document.querySelector("input");
 	var xhr = new XMLHttpRequest();
-     var url = "localhost:3000/searchName"
+     var url = "/search/"+input.value;
      xhr.open( "GET", url );
      xhr.addEventListener( "load", function () {
-          var rosterApi = JSON.parse( xhr.responseText )
-          console.log( rosterApi );
+          var student = JSON.parse( xhr.responseText )
+          console.log( student );
           console.log( "parsed roster" );
-    		for (student in rosterApi){
-    			console.log(student);
-    		}
-
-          var body = document.querySelector("body");
-          var h3 = document.createElement("h3")
-
-          body.appendChild(h3)
-
-
-    }  )
+          var key = Object.keys(student)
+          console.log(key);
+          queryName(key, student, input.value)
+      });
      xhr.send();
-})
+});
+
+var queryName = function(key, student, name){
+	console.log("hi");
+	console.log(student);
+	console.log(key);
+	if (key == "exists"){
+		console.log("I'm in");
+     		console.log(student["exists"].name);
+     		var body = document.querySelector("body");
+			var input = document.querySelector("input");
+    		var h3 = document.createElement("h3")
+    		h3.innerText = student.exists.name +" is a current student at Hogwarts."
+    				body.appendChild(h3)
+    				var a = document.createElement("a")
+    				a.href = "/student/"+student.exists.id
+    				a.innerText = "Click here to see their page."
+    				body.appendChild(a)
+	}
+    else if (key == "no") {
+    	var body = document.querySelector("body");
+			var input = document.querySelector("input");
+    		var h3 = document.createElement("h3")
+    		h3.innerText = name +" is not a current student at Hogwarts."
+    			body.appendChild(h3)
+    			var a = document.createElement("a")
+    				a.href = "/students"
+    				a.innerText = "Click here to see registered students."
+    				body.appendChild(a)
+	};
+};
+	
 </script>
 </html>

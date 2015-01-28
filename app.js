@@ -20,7 +20,7 @@ console.log( students );
 var counter = 1
 
 var none = {
-	status: "No such student is registered."
+	no: "No such student is registered."
 };
 
 app.get( '/students', function ( req, res ) {
@@ -40,9 +40,19 @@ app.get( '/search', function ( req, res ) {
 	res.render( 'search.ejs' )
 } );
 
-app.get( '/searchName', function ( req, res ) {
-
-	res.json( students )
+app.get( '/search/:queryName', function ( req, res ) {
+	var queryName = req.params.queryName
+	console.log("searching for: "+ queryName);
+	for(student in students){
+    			var name = students[student].name;
+    			 	if (queryName === name ){
+    			 		console.log(students[student].name);
+		res.json({exists: students[student]});
+	}
+	if (queryName != name) {
+		res.json(none)
+	}
+}
 } );
 
 app.post( '/student', function ( req, res ) {

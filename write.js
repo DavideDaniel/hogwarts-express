@@ -3,9 +3,9 @@ var fs = require('fs');
 var roster = {
 	0: {
 		id: 0,
-		name: "David",
-		age: "33",
-		favorite_spell: "apparating"
+		name: "Severus Snape",
+		age: "16",
+		favorite_spell: "Sectumsempra"
 	}
 }
 
