@@ -16,7 +16,7 @@ console.log( parsedRoster );
 console.log( "that's parsed" );
 
 var students = parsedRoster;
-console.log(students);
+console.log( students );
 var counter = 1
 
 var none = {
@@ -40,15 +40,9 @@ app.get( '/search', function ( req, res ) {
 	res.render( 'search.ejs' )
 } );
 
-app.get( '/search/:searchName', function ( req, res ) {
-	for ( var student in students ) {
-		if ( students[ student ].name === req.params.searchName ) {
-			res.redirect( '/student/' + students[ student ].id )
-		}
-		else {
-			res.render( 'search.ejs', none )
-		}
-	};
+app.get( '/searchName', function ( req, res ) {
+
+	res.json( students )
 } );
 
 app.post( '/student', function ( req, res ) {
@@ -63,7 +57,7 @@ app.post( '/student', function ( req, res ) {
 	counter++
 	console.log( students.counter );
 	res.method = 'get';
-	fs.writeFile('roster.json',JSON.stringify(students))
+	fs.writeFile( 'roster.json', JSON.stringify( students ) )
 	res.redirect( '/students' );
 } );
 
@@ -72,14 +66,14 @@ app.put( '/student/:id', function ( req, res ) {
 	students[ req.params.id ].name = req.body.newName;
 	students[ req.params.id ].favorite_spell = req.body.newFaveSpell;
 	req.method = 'get';
-	fs.writeFile('roster.json',JSON.stringify(students))
+	fs.writeFile( 'roster.json', JSON.stringify( students ) )
 	res.redirect( '/student/' + req.params.id )
 } )
 
 app.delete( '/student/:id', function ( req, res ) {
 	delete students[ req.params.id ];
 	req.method = 'get';
-	fs.writeFile('roster.json',JSON.stringify(students))
+	fs.writeFile( 'roster.json', JSON.stringify( students ) )
 	res.redirect( '/students' );
 } );
 

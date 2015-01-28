@@ -5,24 +5,37 @@
 	<title>hogwashery!</title>
 </head>
 <body>
-	<form action="/search" method="/get">
-		<input type="text" placeholder="Name of student" name="searchName">
-		<button>Search</button>
-	</form>
+<input type="text" placeholder="Name of student" name="searchName">
+<button>Search</button>
+
 </body>
 
 <script type="text/javascript">
+	var button = document.querySelector("button")
+
+
+button.addEventListener("click", function (){
+
+
 	var xhr = new XMLHttpRequest();
-     var url = "localhost:3000/rosterApi"
-     xhr.open( "GET", billUrl );
+     var url = "localhost:3000/searchName"
+     xhr.open( "GET", url );
      xhr.addEventListener( "load", function () {
-          var billObjects = JSON.parse( xhr.responseText )
-          console.log( "bill" + billObjects );
-          var ul = document.querySelector( "ul" )
-          for ( var i = 0; i < billObjects.results.length; i++ ) {
-               bills.push( billObjects.results[ i ] )
+          var rosterApi = JSON.parse( xhr.responseText )
+          console.log( rosterApi );
+          console.log( "parsed roster" );
+    		for (student in rosterApi){
+    			console.log(student);
+    		}
 
-          };
+          var body = document.querySelector("body");
+          var h3 = document.createElement("h3")
 
+          body.appendChild(h3)
+
+
+    }  )
+     xhr.send();
+})
 </script>
 </html>
