@@ -11,19 +11,17 @@ app.use( express.static( __dirname + '/public' ) );
 var roster = fs.readFileSync( 'roster.json', 'utf8' );
 
 var parsedRoster = JSON.parse( roster );
-console.log( roster );
-console.log( "that should be buffer" );
 
 console.log( parsedRoster );
 console.log( "that's parsed" );
 
-var students = roster;
+var students = parsedRoster;
 console.log(students);
 var counter = 1
 
 var none = {
 	status: "No such student is registered."
-}
+};
 
 app.get( '/students', function ( req, res ) {
 	res.render( 'index.ejs', {
@@ -65,6 +63,7 @@ app.post( '/student', function ( req, res ) {
 	counter++
 	console.log( students.counter );
 	res.method = 'get';
+	fs.writeFile('roster.json',JSON.stringify(students))
 	res.redirect( '/students' );
 } );
 
@@ -73,12 +72,14 @@ app.put( '/student/:id', function ( req, res ) {
 	students[ req.params.id ].name = req.body.newName;
 	students[ req.params.id ].favorite_spell = req.body.newFaveSpell;
 	req.method = 'get';
+	fs.writeFile('roster.json',JSON.stringify(students))
 	res.redirect( '/student/' + req.params.id )
 } )
 
 app.delete( '/student/:id', function ( req, res ) {
 	delete students[ req.params.id ];
 	req.method = 'get';
+	fs.writeFile('roster.json',JSON.stringify(students))
 	res.redirect( '/students' );
 } );
 
