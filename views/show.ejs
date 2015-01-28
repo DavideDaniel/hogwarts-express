@@ -7,9 +7,17 @@
     <body>
         <header>
             <h1>hogwashery!</h1>
-            <a href="/students">the great hall</a>
+            <a href="/students">Back to the great hall</a>
         </header>
-        <p><%= thisStudent.name  %> is <%= thisStudent.age %> years old. Their favorite spell is <%= thisStudent.favorite_spell %>. </p>
+        <h2><%= thisStudent.name  %>'s page</h2> 
+        <h3>House: <% if (thisStudent.house === "") { %>
+            Waiting for the sorting ceremony...
+        <% } else { %>
+        <%= thisStudent.house %>
+        <% } %>
+        </h3>
+        <h4> Age: <%= thisStudent.age %> years old</h4>
+         <h5>Favorite spell: <%= thisStudent.favorite_spell %> </h5>
         <h3>Update <%= thisStudent.name %>'s info here:</h3>
         <form action="/student/<%= thisStudent.id %>?_method=put" method="post">
             <input type="hidden" name="_method" value="put" required>
@@ -17,7 +25,7 @@
             <input type="text" name = "newFaveSpell" placeholder="Change favorite spell here">
             <button>Drink the polyjuice!!!</button>
         </form>
-        <h3>De-register <%= thisStudent.name  %> here:</h3>
+        <h3>Disapparate <%= thisStudent.name  %> from Hogsmeade:</h3>
         <form action="/student/<%= thisStudent.id %>?_method=delete" method="post">
             <input type="hidden" name="_method" value="delete" required>
             <button>DISAPPARATE!!!</button>

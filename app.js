@@ -26,7 +26,7 @@ var none = {
 var houses = ["Gryffindor","Ravenclaw","Hufflepuff","Slytherin"];
 
 var sortingHat = function(student, houses){
-	student.house = houses[Math.floor(Math.random()*houses.length]
+	student.house = houses[Math.floor(Math.random()*houses.length)];
 };
 
 app.get( '/students', function ( req, res ) {
