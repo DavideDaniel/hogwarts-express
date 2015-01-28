@@ -23,6 +23,12 @@ var none = {
 	no: "No such student is registered."
 };
 
+var houses = ["Gryffindor","Ravenclaw","Hufflepuff","Slytherin"];
+
+var sortingHat = function(student, houses){
+	student.house = houses[Math.floor(Math.random()*houses.length]
+};
+
 app.get( '/students', function ( req, res ) {
 	res.render( 'index.ejs', {
 		students: students
@@ -60,6 +66,7 @@ app.post( '/student', function ( req, res ) {
 		id: counter,
 		name: req.body.name,
 		age: req.body.age,
+		house: "",
 		favorite_spell: req.body.faveSpell,
 	};
 	console.log( student );
